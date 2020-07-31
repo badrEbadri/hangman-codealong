@@ -6,6 +6,7 @@ const WORDS = [
   'SEPARATION OF CONCERNS'
 ];
 const MAX_WRONG = 6;
+const SPRITE_WIDTH = -11.25;
 
 /*----- app's state (variables) -----*/
 let secretWord;   // holds the randomly selected word
@@ -14,6 +15,7 @@ let guess;   // string - that is initialized to same length as the secret
 
 /*----- cached element references -----*/
 const guessEl = document.getElementById('guess');
+const gallowsEl = document.getElementById('gallows');
 const btnEls = document.querySelectorAll('#letters > button');
 
 /*----- event listeners -----*/
@@ -79,4 +81,5 @@ function render() {
       btnEl.className = '';
     }
   });
+  gallowsEl.style.backgroundPositionX = `${wrongLetters.length * SPRITE_WIDTH}vmin`;
 }
