@@ -13,7 +13,8 @@ let wrongLetters;   // array of strings
 let guess;   // string - that is initialized to same length as the secret
 
 /*----- cached element references -----*/
-
+const guessEl = document.getElementById('guess');
+const btnEls = document.querySelectorAll('#letters > button');
 
 /*----- event listeners -----*/
 document.getElementById('letters')
@@ -43,7 +44,6 @@ function handleLetterClick(evt) {
     // Bad guess
     wrongLetters.push(letter);
   }
-  console.log(guess, wrongLetters)
   render();
 }
 
@@ -66,6 +66,17 @@ function init() {
   render();
 }
 
+// Key Concept:  Transfer all state to the DOM
 function render() {
-
+  guessEl.innerHTML = `<strong>${guess}</strong>`;
+  btnEls.forEach(function(btnEl) {
+    const letter = btnEl.textContent;
+    if (wrongLetters.includes(letter)) {
+      btnEl.className = 'wrong';
+    } else if (guess.includes(letter)) {
+      btnEl.className = 'correct';
+    } else {
+      btnEl.className = '';
+    }
+  });
 }
