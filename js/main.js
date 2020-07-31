@@ -16,11 +16,15 @@ let guess;   // string - that is initialized to same length as the secret
 /*----- cached element references -----*/
 const guessEl = document.getElementById('guess');
 const gallowsEl = document.getElementById('gallows');
+const msgEl = document.getElementById('msg');
+const replayEl = document.getElementById('replay');
 const btnEls = document.querySelectorAll('#letters > button');
 
 /*----- event listeners -----*/
 document.getElementById('letters')
   .addEventListener('click', handleLetterClick);
+
+replayEl.addEventListener('click', init);
 
 /*----- functions -----*/
 init();
@@ -82,4 +86,18 @@ function render() {
     }
   });
   gallowsEl.style.backgroundPositionX = `${wrongLetters.length * SPRITE_WIDTH}vmin`;
+  replayEl.style.visibility = isGameOver() ? 'visible' : 'hidden';
+  renderMessage();
+}
+
+function renderMessage() {
+  if (guess === secretWord) {
+    msgEl.textContent = 'Congrats you won!';
+  } else if (wrongLetters.length === MAX_WRONG) {
+    msgEl.textContent = 'Bummer, you lost :(';
+  } else {
+    // Game is in play
+    // TODO: Render how many wrong guesses left (x of y)
+    msgEl.textContent = "Good Luck!";
+  }
 }
