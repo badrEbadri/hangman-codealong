@@ -22,12 +22,17 @@ document.getElementById('letters')
 /*----- functions -----*/
 init();
 
-// Key: In response to user interaction, update state, then call render()
+// Key Concept: In response to user interaction, update state, then call render()
 function handleLetterClick(evt) {
   const letter = evt.target.textContent;
-  console.log('letter', letter);
+  if (
+    letter.length > 1
+  ) return;
+  console.log('letter', letter.length);
   // What do we need to do?
 
+
+  render();
 }
 
 function init() {
