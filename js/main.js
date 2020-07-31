@@ -26,13 +26,23 @@ init();
 function handleLetterClick(evt) {
   const letter = evt.target.textContent;
   if (
-    letter.length > 1
+    letter.length > 1 ||
+    isGameOver() ||
+    wrongLetters.includes(letter) ||
+    guess.includes(letter)
   ) return;
-  console.log('letter', letter.length);
-  // What do we need to do?
+  if (secretWord.includes(letter)) {
+    // Letter is correct, replace all _ at occurances in secretWord
 
-
+  } else {
+    wrongLetters.push(letter);
+    console.log(wrongLetters)
+  }
   render();
+}
+
+function isGameOver() {
+  return secretWord === guess || wrongLetters.length === MAX_WRONG;
 }
 
 function init() {
