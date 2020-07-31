@@ -16,10 +16,19 @@ let guess;   // string - that is initialized to same length as the secret
 
 
 /*----- event listeners -----*/
-
+document.getElementById('letters')
+  .addEventListener('click', handleLetterClick);
 
 /*----- functions -----*/
 init();
+
+// Key: In response to user interaction, update state, then call render()
+function handleLetterClick(evt) {
+  const letter = evt.target.textContent;
+  console.log('letter', letter);
+  // What do we need to do?
+
+}
 
 function init() {
   // Initialize all state and lastly call render()
@@ -31,4 +40,11 @@ function init() {
   for (let char of secretWord) {
     guess += (char === ' ') ? ' ' : '_';
   }
+  // Init guess using a regex
+  // guess = secretWord.replace(/[A-Z]/g, '_');
+  render();
+}
+
+function render() {
+
 }
