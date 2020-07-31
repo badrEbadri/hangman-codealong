@@ -33,11 +33,17 @@ function handleLetterClick(evt) {
   ) return;
   if (secretWord.includes(letter)) {
     // Letter is correct, replace all _ at occurances in secretWord
-
+    let newGuess = '';
+    for (let i = 0; i < secretWord.length; i++) {
+      newGuess += secretWord.charAt(i) === letter ?
+        letter : guess.charAt(i);
+    }
+    guess = newGuess;
   } else {
+    // Bad guess
     wrongLetters.push(letter);
-    console.log(wrongLetters)
   }
+  console.log(guess, wrongLetters)
   render();
 }
 
